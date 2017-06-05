@@ -1,5 +1,6 @@
 # cnu-games-server
 
+
 ### Homework 
 * Extractor
     ```
@@ -11,18 +12,18 @@
         cardList.add(new Card(10, Suit.DIAMONDS));
         cardList.add(new Card(11, Suit.DIAMONDS));
     ```
-  * extractHighHands
-    * 주어진 N개의 카드에 대해 가장 높은 조합을 가지는 5개의 카드를 추출해 내야 한다.
+  * extractHighHands 5조 
+    * 주어진 N개의 카드에 대해 가장 높은 조합을 가지는 5개의 카드를 추출해 내야 한다.
     * 위의 경우 FLUSH의 1,6,7,8,9 카드가 추출되어야 한다.
-  * extractLowHands
-    * 주어진 N개의 카드에 대해 가장 낮은 조합을 가지는 5개의 카드를 추출해 내야 한다.
+  * extractLowHands 6조
+    * 주어진 N개의 카드에 대해 가장 낮은 조합을 가지는 5개의 카드를 추출해 내야 한다.
     * 위의 경우 NOTHING 의 1,6,7,8,10 이 되어야 한다.
 * Evaluator
-  * evalauteHighHands
-    * HandsType 에 맞춰 Ordering 이 잘 되는지 확인
+  * evalauteHighHands 15조
+    * HandsType 에 맞춰 Ordering 이 잘 되는지 확인
     * HandsType 이 같을 경우 숫자 + 모양으로 판단해야 한다.
-  * evalauteLowHands
-    * HandsType 에 맞춰 Ordering 이 잘 되는지 확인
+  * evalauteLowHands 13조
+    * HandsType 에 맞춰 Ordering 이 잘 되는지 확인
     * HandsType 이 같을 경우 숫자 + 모양으로 판단해야 한다. 
 * 고려해야할 사항
   * Ace 는 1과 14로 모두 사용될 수 있다.

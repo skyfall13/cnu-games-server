@@ -27,8 +27,11 @@ public class Evaluator {
         };
         Collections.sort(handsList, sort);
 
-
         return handsList;
+    }
+
+    public boolean evalaute(Hands otherHands){
+        if()
     }
 
 }

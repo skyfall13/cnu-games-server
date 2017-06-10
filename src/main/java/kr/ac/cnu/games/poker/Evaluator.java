@@ -30,8 +30,6 @@ public class Evaluator {
         return handsList;
     }
 
-    public boolean evalaute(Hands otherHands){
-        if()
-    }
+//    TODO
 
 }

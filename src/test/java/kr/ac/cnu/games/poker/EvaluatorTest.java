@@ -59,9 +59,15 @@ public class EvaluatorTest {
 
     // TODO 각 HandsType 에 맞춰 ordering 이 잘 되는지 확인
     // TODO HandsType 이 같을때 가장 낮은 숫자로 odering 이 되는지 확인.
+    @Test
+    public void 핸드_타입이_다를때_족보가_낮으면_이긴다(){
+        Hands myHands= getStright();
+        Hands otherHands = getFlush();
 
+        int result = evaluator.evalauteHandsType(myHands, otherHands);
+        assertThat(result, is(1));
+    }
     // Low CARD 테스트 -->
-
 
     // Givens
     private Hands getFlush() {

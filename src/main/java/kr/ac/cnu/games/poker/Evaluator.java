@@ -31,6 +31,6 @@ public class Evaluator {
     }
 
 //    TODO
-//    sort함수 및 compare 
+//    sort함수 및 compare
 
 }

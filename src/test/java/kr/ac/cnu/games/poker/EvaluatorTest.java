@@ -69,13 +69,23 @@ public class EvaluatorTest {
     }
 
     @Test
-    public void extractorLowHands2_같은_원페어의_경우_후속_NUMBER_비교(){
+    public void extractorLowHands_같은_원페어의_경우_후속_NUMBER_비교(){
         //given
        Hands myHands = getOnePair1();
        Hands otherHans = getOnePair2();
 
        int result = evaluator.evalauteHandsType(myHands, otherHans);
-       assertThat(result, is (1));
+       assertThat(result, is (-2));
+    }
+
+    @Test
+    public void extractorLowHands_NUMBER같은_원페어의_경우_후속_문양_비교(){
+        //given
+        Hands myHands = getOnePair2();
+        Hands otherHans = getOnePair3();
+
+        //int result = evaluator.evalauteHandsType(myHands, otherHans);
+        //assertThat(result, is (-2));
     }
     // Low CARD 테스트 -->
 
@@ -126,11 +136,11 @@ public class EvaluatorTest {
 
     private Hands getOnePair3() {
         List<Card> cardList = new ArrayList<>();
-        cardList.add(new Card(2, Suit.CLUBS));
-        cardList.add(new Card(2, Suit.DIAMONDS));
-        cardList.add(new Card(5, Suit.CLUBS));
-        cardList.add(new Card(7, Suit.DIAMONDS));
-        cardList.add(new Card(4, Suit.CLUBS));
+        cardList.add(new Card(2, Suit.SPADES));
+        cardList.add(new Card(2, Suit.HEARTS));
+        cardList.add(new Card(5, Suit.SPADES));
+        cardList.add(new Card(7, Suit.HEARTS));
+        cardList.add(new Card(4, Suit.HEARTS));
 
         return new Hands(HandsType.ONE_PAIR, cardList);
     }
@@ -223,7 +233,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.FOUR_CARD, cardList);
     }
 
-    private Hands StrightFlash() {
+    private Hands getStrightFlash() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(1, Suit.HEARTS));
         cardList.add(new Card(2, Suit.HEARTS));
@@ -234,7 +244,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.STRIGHT_FLUSH, cardList);
     }
 
-    private Hands StrightFlash2() {
+    private Hands getStrightFlash2() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(1, Suit.CLUBS));
         cardList.add(new Card(5, Suit.CLUBS));
@@ -245,7 +255,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.STRIGHT_FLUSH, cardList);
     }
 
-    private Hands StrightFlash3() {
+    private Hands getStrightFlash3() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(12, Suit.CLUBS));
         cardList.add(new Card(1, Suit.CLUBS));
@@ -256,7 +266,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.STRIGHT_FLUSH, cardList);
     }
 
-    private Hands Noting() {
+    private Hands getNoting() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(1, Suit.SPADES));
         cardList.add(new Card(3, Suit.CLUBS));
@@ -266,7 +276,7 @@ public class EvaluatorTest {
 
         return new Hands(HandsType.NOTHING, cardList);
     }
-    private Hands Noting2() {
+    private Hands getNoting2() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(1, Suit.DIAMONDS));
         cardList.add(new Card(3, Suit.HEARTS));
@@ -277,7 +287,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.NOTHING, cardList);
     }
 
-    private Hands Noting3() {
+    private Hands getNoting3() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(1, Suit.DIAMONDS));
         cardList.add(new Card(2, Suit.HEARTS));
@@ -288,7 +298,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.NOTHING, cardList);
     }
 
-    private Hands Noting4() {
+    private Hands getNoting4() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(1, Suit.DIAMONDS));
         cardList.add(new Card(2, Suit.HEARTS));

@@ -27,6 +27,11 @@ public class Evaluator {
         return handsList;
     }
 
+    public int evaluateLowHandsRanks(Hands myHands, Hands otherHands){
+
+        return 0;
+    }
+
     public int evalauteHandsType(Hands myHands,Hands otherHands){
 
         if(!myHands.getHandsType().equals(otherHands.getHandsType())) {

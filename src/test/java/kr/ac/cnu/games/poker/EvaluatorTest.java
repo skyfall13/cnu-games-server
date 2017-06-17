@@ -67,6 +67,15 @@ public class EvaluatorTest {
         int result = evaluator.evalauteHandsType(myHands, otherHands);
         assertThat(result, is(1));
     }
+    @Test
+    public void 스트레이트_플러시로_같을_때_제일_큰_숫자_비교해서_낮은_쪽이_이긴다(){
+        Hands myHands = getStrightFlash2();
+        Hands otherHands = getStrightFlash3();
+
+        int result = evaluator.evalauteHandsType(myHands, otherHands);
+        assertThat(result, is(8));
+    }
+
     // Low CARD 테스트 -->
 
     // Givens
@@ -90,6 +99,28 @@ public class EvaluatorTest {
         cardList.add(new Card(4, Suit.CLUBS));
 
         return new Hands(HandsType.STRIGHT, cardList);
+    }
+
+    private Hands getStrightFlash2() {
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(1, Suit.HEARTS));
+        cardList.add(new Card(5, Suit.HEARTS));
+        cardList.add(new Card(4, Suit.HEARTS));
+        cardList.add(new Card(2, Suit.HEARTS));
+        cardList.add(new Card(3, Suit.HEARTS));
+
+        return new Hands(HandsType.STRIGHT_FLUSH, cardList);
+    }
+
+    private Hands getStrightFlash3() {
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(12, Suit.CLUBS));
+        cardList.add(new Card(1, Suit.CLUBS));
+        cardList.add(new Card(10, Suit.CLUBS));
+        cardList.add(new Card(13, Suit.CLUBS));
+        cardList.add(new Card(11, Suit.CLUBS));
+
+        return new Hands(HandsType.STRIGHT_FLUSH, cardList);
     }
 
 }

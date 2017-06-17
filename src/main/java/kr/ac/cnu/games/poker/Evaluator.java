@@ -14,7 +14,7 @@ public class Evaluator {
         // do Something
         return null;
     }
-
+    // 족보를 내림차순 정렬
     public List<Hands> evalauteLowHands(List<Hands> handsList) {
         // do Something
         Comparator<Hands> sort = new Comparator<Hands>() {
@@ -27,15 +27,47 @@ public class Evaluator {
         return handsList;
     }
 
+
     public int evaluateLowHandsRanks(Hands myHands, Hands otherHands){
 
         return 0;
     }
-
+    
     public int evalauteHandsType(Hands myHands,Hands otherHands){
 
         if(!myHands.getHandsType().equals(otherHands.getHandsType())) {
             return myHands.getHandsType().ordinal() - otherHands.getHandsType().ordinal(); // 양수면 내가이긴다
+        } else {
+            Comparator<Card> sort = new Comparator<Card>() {
+                public int compare(Card o1, Card o2) {
+                    return (o2.getNumber() - o1.getNumber());
+                }
+            };
+            Collections.sort(myHands.getCardList(), sort);
+            Collections.sort(otherHands.getCardList(), sort);
+            LowCardComparator lowComp = new LowCardComparator();
+
+            switch (myHands.getHandsType()){
+                case STRIGHT_FLUSH:
+                    Iterator<Card> myCard = myHands.getCardList().iterator();
+                    Iterator<Card> otherCard = otherHands.getCardList().iterator();
+
+                    while(myCard.hasNext() && otherCard.hasNext()){
+                        int temp = lowComp.compare(myCard.next(), otherCard.next());
+                        if(temp != 0)
+                            return temp;
+                    }
+                    break;
+                case FOUR_CARD:
+                case FULL_HOUSE:
+                case FLUSH:
+                case STRIGHT:
+                case THREE_CARD:
+                case TWO_PAIR:
+                case ONE_PAIR:
+                case NOTHING:
+                default:
+            }
         }
         return 0;
 
@@ -65,6 +97,7 @@ public class Evaluator {
 //        }
 
     }
+
 //    TODO
 //    sort함수 및 compare
 

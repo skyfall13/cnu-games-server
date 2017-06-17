@@ -26,7 +26,13 @@ public class Evaluator {
 
         return handsList;
     }
-    // 동일한 족보인지 비교
+
+
+    public int evaluateLowHandsRanks(Hands myHands, Hands otherHands){
+
+        return 0;
+    }
+    
     public int evalauteHandsType(Hands myHands,Hands otherHands){
 
         if(!myHands.getHandsType().equals(otherHands.getHandsType())) {

@@ -76,7 +76,6 @@ public class EvaluatorTest {
         System.out.print(handsList);
         assertThat(resultList.get(0).getHandsType(), is(HandsType.STRIGHT));
         assertThat(resultList.get(1).getHandsType(), is(HandsType.FLUSH));
-
     }
 
     // TODO 각 HandsType 에 맞춰 ordering 이 잘 되는지 확인
@@ -98,6 +97,40 @@ public class EvaluatorTest {
         int result = evaluator.evalauteHandsType(myHands, otherHands);
         assertThat(result, is(8));
     }
+
+    @Test
+    public void 스트레이트_플러시로_같을_때_제일_큰_숫자_비교했는데_같으면_클로버에_가까운_모양이_이긴다(){
+        Hands myHands = getStrightFlash5();
+        Hands otherHands = getStrightFlash3();
+
+        int result = evaluator.evalauteHandsType(myHands, otherHands);
+        assertThat(result, is(-1));
+    }
+
+    @Test
+    public void Flush_비교_다른랭크_다른문양(){
+        Hands myHands = getFlush1();
+        Hands otherhands = getFlush4();
+        int result = evaluator.evalauteHandsType(myHands, otherhands);
+        assertThat(result, is(-2));
+    }
+
+    @Test
+    public void Flush_비교_같은랭크_다른문양(){
+        Hands myHands = getFlush1();
+        Hands otherhands = getFlush3();
+        int result = evaluator.evalauteHandsType(myHands, otherhands);
+        assertThat(result, is(1));
+    }
+
+    @Test
+    public void Flush_비교_다른랭크_같은문양(){
+        Hands myHands = getFlush1();
+        Hands otherhands = getFlush2();
+        int result = evaluator.evalauteHandsType(myHands, otherhands);
+        assertThat(result, is(-1));
+    }
+
 
     @Test
     public void extractorLowHands_같은_원페어의_경우_후속_NUMBER_비교(){
@@ -137,6 +170,50 @@ public class EvaluatorTest {
         cardList.add(new Card(5, Suit.CLUBS));
         cardList.add(new Card(6, Suit.CLUBS));
         cardList.add(new Card(7, Suit.CLUBS));
+
+        return new Hands(HandsType.FLUSH, cardList);
+    }
+
+    private Hands getFlush1(){
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(1, Suit.CLUBS));
+        cardList.add(new Card(2, Suit.CLUBS));
+        cardList.add(new Card(3, Suit.CLUBS));
+        cardList.add(new Card(7, Suit.CLUBS));
+        cardList.add(new Card(13, Suit.CLUBS));
+
+        return new Hands(HandsType.FLUSH, cardList);
+    }
+
+    private Hands getFlush2(){
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(4, Suit.CLUBS));
+        cardList.add(new Card(9, Suit.CLUBS));
+        cardList.add(new Card(5, Suit.CLUBS));
+        cardList.add(new Card(6, Suit.CLUBS));
+        cardList.add(new Card(12, Suit.CLUBS));
+
+        return new Hands(HandsType.FLUSH, cardList);
+    }
+
+    private Hands getFlush3(){
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(1, Suit.HEARTS));
+        cardList.add(new Card(2, Suit.HEARTS));
+        cardList.add(new Card(3, Suit.HEARTS));
+        cardList.add(new Card(7, Suit.HEARTS));
+        cardList.add(new Card(13, Suit.HEARTS));
+
+        return new Hands(HandsType.FLUSH, cardList);
+    }
+
+    private Hands getFlush4(){
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(7, Suit.SPADES));
+        cardList.add(new Card(1, Suit.SPADES));
+        cardList.add(new Card(3, Suit.SPADES));
+        cardList.add(new Card(8, Suit.SPADES));
+        cardList.add(new Card(11, Suit.SPADES));
 
         return new Hands(HandsType.FLUSH, cardList);
     }
@@ -357,6 +434,17 @@ public class EvaluatorTest {
         cardList.add(new Card(4, Suit.HEARTS));
         cardList.add(new Card(2, Suit.HEARTS));
         cardList.add(new Card(3, Suit.HEARTS));
+
+        return new Hands(HandsType.STRIGHT_FLUSH, cardList);
+    }
+
+    private Hands getStrightFlash5() {
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(12, Suit.HEARTS));
+        cardList.add(new Card(1, Suit.HEARTS));
+        cardList.add(new Card(13, Suit.HEARTS));
+        cardList.add(new Card(10, Suit.HEARTS));
+        cardList.add(new Card(11, Suit.HEARTS));
 
         return new Hands(HandsType.STRIGHT_FLUSH, cardList);
     }

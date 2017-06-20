@@ -93,11 +93,17 @@ public class EvaluatorTest {
         Hands myHands = getOnePair2();
         Hands otherHans = getOnePair3();
 
-        //int result = evaluator.evalauteHandsType(myHands, otherHans);
-        //assertThat(result, is (-2));
+        int result = evaluator.evalauteHandsType(myHands, otherHans);
+        assertThat(result, is (-2));
     }
     // Low CARD 테스트 -->
-
+    @Test
+    public void 투페어비교() {
+        Hands myHands = getTwoPair();
+        Hands otherHans = getTwoPair2();
+        int result = evaluator.evalauteHandsType(myHands, otherHans);
+        assertThat(result, is (-2));
+    }
     // Givens
     private Hands getFlush() {
         List<Card> cardList = new ArrayList<>();

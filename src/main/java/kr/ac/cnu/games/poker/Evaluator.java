@@ -64,8 +64,50 @@ public class Evaluator {
                 case STRIGHT:
                 case THREE_CARD:
                 case TWO_PAIR:
-
-                    return 0;
+                    int myNPair;
+                    int otherNPair;
+                    if(myHands.getCardList().get(0).getNumber() - myHands.getCardList().get(1).getNumber() == 0 ) {
+                        if(myHands.getCardList().get(2).getNumber() - myHands.getCardList().get(3).getNumber() == 0 ) {
+                            myNPair = 4;
+                        }else {
+                            myNPair = 2;
+                        }
+                    }else {
+                        myNPair = 0;
+                    }
+                    if(otherHands.getCardList().get(0).getNumber() - otherHands.getCardList().get(1).getNumber() == 0 ) {
+                        if(otherHands.getCardList().get(2).getNumber() - otherHands.getCardList().get(3).getNumber() == 0 ) {
+                            otherNPair = 4;
+                        }else {
+                            otherNPair = 2;
+                        }
+                    }else {
+                        otherNPair = 0;
+                    }
+                    for (int i =0; i<5; i++) {
+                        if( i == myNPair) {
+                            continue;
+                        }
+                        myTempList.add(myHands.getCardList().get(i));
+                    }
+                    for (int i =0; i<5; i++) {
+                        if( i == otherNPair) {
+                            continue;
+                        }
+                        otherTempList.add(otherHands.getCardList().get(i));
+                    }
+                    for (int i=0; i<4; i++) {
+                        if (lowComp.compare(myTempList.get(i), otherTempList.get(i), 1) == 0) {
+                            i++;
+                        } else {
+                            return lowComp.compare(myTempList.get(i), otherTempList.get(i), 1);
+                        }
+                    }
+                    if (lowComp.compare(myHands.getCardList().get(myNPair),otherHands.getCardList().get(otherNPair),1) == 0) {
+                        return lowComp.compare(myTempList.get(0), otherTempList.get(0));
+                    } else {
+                        return lowComp.compare(myHands.getCardList().get(myNPair),otherHands.getCardList().get(otherNPair),1);
+                    }
                 case ONE_PAIR:
                     Card card1 = myCard.next();
                     Card card2;

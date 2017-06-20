@@ -11,8 +11,15 @@ import java.util.*;
 @Component
 public class Evaluator {
     public List<Hands> evalauteHighHands(List<Hands> handsList) {
-        // do Something
-        return null;
+
+        Comparator<Hands> sort = new Comparator<Hands>() {
+            public int compare(Hands o1, Hands o2) {
+                return (o1.getHandsType().compareTo(o2.getHandsType()));
+            }
+        };
+        Collections.sort(handsList, sort);
+
+        return handsList;
     }
     // 족보를 내림차순 정렬
     public List<Hands> evalauteLowHands(List<Hands> handsList) {

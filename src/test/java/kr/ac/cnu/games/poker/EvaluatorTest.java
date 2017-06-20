@@ -118,14 +118,17 @@ public class EvaluatorTest {
         int result = evaluator.evalauteHandsType(myHands, otherHans);
         assertThat(result, is (-2));
     }
-    // Low CARD 테스트 -->
+
     @Test
     public void 투페어비교() {
-        Hands myHands = getTwoPair();
+        Hands myHands = getTwoPair1();
         Hands otherHans = getTwoPair2();
         int result = evaluator.evalauteHandsType(myHands, otherHans);
         assertThat(result, is (-2));
     }
+
+    // Low CARD 테스트 -->
+
     // Givens
     private Hands getFlush() {
         List<Card> cardList = new ArrayList<>();
@@ -148,6 +151,8 @@ public class EvaluatorTest {
 
         return new Hands(HandsType.STRIGHT, cardList);
     }
+
+    //<-- 15조 get내용
     private Hands getOnepair() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(1, Suit.CLUBS));
@@ -155,8 +160,42 @@ public class EvaluatorTest {
         cardList.add(new Card(1, Suit.HEARTS));
         cardList.add(new Card(3, Suit.HEARTS));
         cardList.add(new Card(9, Suit.SPADES));
+        return new Hands(HandsType.ONE_PAIR, cardList);
+    }
 
-<<<<<<< HEAD
+    private Hands getNothing() {
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(1, Suit.CLUBS));
+        cardList.add(new Card(5, Suit.DIAMONDS));
+        cardList.add(new Card(1, Suit.HEARTS));
+        cardList.add(new Card(3, Suit.HEARTS));
+        cardList.add(new Card(9, Suit.SPADES));
+
+        return new Hands(HandsType.NOTHING, cardList);
+    }
+    private Hands getTwopair() {
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(1, Suit.CLUBS));
+        cardList.add(new Card(5, Suit.DIAMONDS));
+        cardList.add(new Card(1, Suit.HEARTS));
+        cardList.add(new Card(3, Suit.HEARTS));
+        cardList.add(new Card(9, Suit.SPADES));
+
+        return new Hands(HandsType.TWO_PAIR, cardList);
+    }
+    private Hands getFullhouse() {
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(1, Suit.CLUBS));
+        cardList.add(new Card(5, Suit.DIAMONDS));
+        cardList.add(new Card(1, Suit.HEARTS));
+        cardList.add(new Card(3, Suit.HEARTS));
+        cardList.add(new Card(9, Suit.SPADES));
+
+        return new Hands(HandsType.FULL_HOUSE, cardList);
+    }
+    //15조 get 내용-->
+
+    // <--- 13조 get 내용
     private Hands getOnePair1() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(2, Suit.SPADES));
@@ -190,7 +229,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.ONE_PAIR, cardList);
     }
 
-    private Hands getTwoPair() {
+    private Hands getTwoPair1() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(2, Suit.CLUBS));
         cardList.add(new Card(2, Suit.DIAMONDS));
@@ -212,7 +251,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.TWO_PAIR, cardList);
     }
 
-    private Hands getTripple() {
+    private Hands getTripple1() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(3, Suit.SPADES));
         cardList.add(new Card(3, Suit.HEARTS));
@@ -234,7 +273,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.THREE_CARD, cardList);
     }
 
-    private Hands getFullHouse() {
+    private Hands getFullHouse1() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(3, Suit.SPADES));
         cardList.add(new Card(4, Suit.HEARTS));
@@ -256,7 +295,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.FULL_HOUSE, cardList);
     }
 
-    private Hands getFourCard() {
+    private Hands getFourCard1() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(1, Suit.SPADES));
         cardList.add(new Card(1, Suit.DIAMONDS));
@@ -278,7 +317,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.FOUR_CARD, cardList);
     }
 
-    private Hands getStrightFlash() {
+    private Hands getStrightFlash1() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(1, Suit.HEARTS));
         cardList.add(new Card(2, Suit.HEARTS));
@@ -322,7 +361,7 @@ public class EvaluatorTest {
         return new Hands(HandsType.STRIGHT_FLUSH, cardList);
     }
 
-    private Hands getNoting() {
+    private Hands getNoting1() {
         List<Card> cardList = new ArrayList<>();
         cardList.add(new Card(1, Suit.SPADES));
         cardList.add(new Card(3, Suit.CLUBS));
@@ -363,39 +402,7 @@ public class EvaluatorTest {
         cardList.add(new Card(10, Suit.HEARTS));
 
         return new Hands(HandsType.NOTHING, cardList);
-=======
-        return new Hands(HandsType.ONE_PAIR, cardList);
     }
 
-    private Hands getNothing() {
-        List<Card> cardList = new ArrayList<>();
-        cardList.add(new Card(1, Suit.CLUBS));
-        cardList.add(new Card(5, Suit.DIAMONDS));
-        cardList.add(new Card(1, Suit.HEARTS));
-        cardList.add(new Card(3, Suit.HEARTS));
-        cardList.add(new Card(9, Suit.SPADES));
-
-        return new Hands(HandsType.NOTHING, cardList);
-    }
-    private Hands getTwopair() {
-        List<Card> cardList = new ArrayList<>();
-        cardList.add(new Card(1, Suit.CLUBS));
-        cardList.add(new Card(5, Suit.DIAMONDS));
-        cardList.add(new Card(1, Suit.HEARTS));
-        cardList.add(new Card(3, Suit.HEARTS));
-        cardList.add(new Card(9, Suit.SPADES));
-
-        return new Hands(HandsType.TWO_PAIR, cardList);
-    }
-    private Hands getFullhouse() {
-        List<Card> cardList = new ArrayList<>();
-        cardList.add(new Card(1, Suit.CLUBS));
-        cardList.add(new Card(5, Suit.DIAMONDS));
-        cardList.add(new Card(1, Suit.HEARTS));
-        cardList.add(new Card(3, Suit.HEARTS));
-        cardList.add(new Card(9, Suit.SPADES));
-
-        return new Hands(HandsType.FULL_HOUSE, cardList);
->>>>>>> 0a2e9833d6ba6cf695c0d012e05cce3b943ccf8a
-    }
+    // 13조 get 내용--->
 }

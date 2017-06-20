@@ -14,8 +14,15 @@ import java.util.List;
 @Component
 public class Evaluator {
     public List<Hands> evalauteHighHands(List<Hands> handsList) {
-        // do Something
-        return null;
+
+        Comparator<Hands> sort = new Comparator<Hands>() {
+            public int compare(Hands o1, Hands o2) {
+                return (o1.getHandsType().compareTo(o2.getHandsType()));
+            }
+        };
+        Collections.sort(handsList, sort);
+
+        return handsList;
     }
 
     public List<Hands> evalauteLowHands(List<Hands> handsList) {

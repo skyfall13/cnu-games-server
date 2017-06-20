@@ -64,7 +64,7 @@ public class EvaluatorTest {
     // High CARD 테스트 -->
 
 
-@Ignore
+
     // <!-- Low CARD 테스트
     @Test
     public void evaluateLowCard1() {

@@ -54,22 +54,35 @@ public class Evaluator {
             int comp;
             List<Card> myTempList = new ArrayList<>();
             List<Card> otherTempList = new ArrayList<>();
+
             switch (myHands.getHandsType()) {
                 case STRIGHT_FLUSH:
                     myCard = myHands.getCardList().iterator();
                     otherCard = otherHands.getCardList().iterator();
 
                     while (myCard.hasNext() && otherCard.hasNext()) {
-                        int temp = lowComp.compare(myCard.next(), otherCard.next());
-                        if (temp != 0)
-                            return temp;
+                        return lowComp.compare(myCard.next(), otherCard.next());
                     }
-                    break;
                 case FOUR_CARD:
+                    return evaluateLowNum(myHands, otherHands, 4);
                 case FULL_HOUSE:
+                    return evaluateLowNum(myHands, otherHands, 3);
                 case FLUSH:
+                    myCard = myHands.getCardList().iterator();
+                    otherCard = otherHands.getCardList().iterator();
+
+                    while (myCard.hasNext() && otherCard.hasNext()) {
+                        return lowComp.compare(myCard.next(), otherCard.next());
+                    }
                 case STRIGHT:
+                    myCard = myHands.getCardList().iterator();
+                    otherCard = otherHands.getCardList().iterator();
+
+                    while (myCard.hasNext() && otherCard.hasNext()) {
+                        return lowComp.compare(myCard.next(), otherCard.next());
+                    }
                 case THREE_CARD:
+                    return evaluateLowNum(myHands, otherHands, 3);
                 case TWO_PAIR:
                     int myNPair;
                     int otherNPair;
@@ -171,30 +184,45 @@ public class Evaluator {
         return 0;
     }
 
-//        LowCardComparator lowCardComp = new LowCardComparator();
-//
-//        Map<Integer, Integer> myMap = new HashMap<Integer, Integer>();
-//        Map<Integer, Integer> otherMap = new HashMap<Integer, Integer>();
-//
-//        for (Card card : myHands.getCardList()) {
-//            if (myMap.containsKey(card.getNumber())) {
-//                Integer count = myMap.get(card.getNumber());
-//                count = new Integer(count.intValue() + 1);
-//                myMap.put(card.getNumber(), count);
-//            } else {
-//                myMap.put(card.getNumber(), new Integer(1));
-//            }
-//        }
-//
-//        for (Card card : otherHands.getCardList()) {
-//            if (myMap.containsKey(card.getNumber())) {
-//                Integer count = otherMap.get(card.getNumber());
-//                count = new Integer(count.intValue() + 1);
-//                otherMap.put(card.getNumber(), count);
-//            } else {
-//                otherMap.put(card.getNumber(), new Integer(1));
-//            }
-//        }
+    private int evaluateLowNum(Hands myHands, Hands otherHands, int duplicated) {
+        Map<Integer, Integer> myMap = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> otherMap = new HashMap<Integer, Integer>();
+
+        int myNum = 0;
+        int otherNum = 0;
+        for (Card card : myHands.getCardList()) {
+            if (myMap.containsKey(card.getNumber())) {
+                Integer count = myMap.get(card.getNumber());
+                count = new Integer(count.intValue() + 1);
+                myMap.put(card.getNumber(), count);
+            } else {
+                myMap.put(card.getNumber(), new Integer(1));
+            }
+        }
+        for (Card card : otherHands.getCardList()) {
+            if (otherMap.containsKey(card.getNumber())) {
+                Integer count = otherMap.get(card.getNumber());
+                count = new Integer(count.intValue() + 1);
+                otherMap.put(card.getNumber(), count);
+            } else {
+                otherMap.put(card.getNumber(), new Integer(1));
+            }
+        }
+
+        for (int key : myMap.keySet()) {
+            if (myMap.get(key) == duplicated) {
+                myNum = key;
+            }
+        }
+
+        for (int key : otherMap.keySet()) {
+            if (otherMap.get(key) == duplicated) {
+                otherNum = key;
+            }
+        }
+
+        return otherNum - myNum;
+    }
 
 
 //    TODO

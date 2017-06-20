@@ -129,7 +129,7 @@ public class EvaluatorTest {
     }
 
     @Test
-    private void Flush_비교_다른랭크_다른문양(){
+    public void Flush_비교_다른랭크_다른문양(){
         Hands myHands = getFlush1();
         Hands otherhands = getFlush4();
         int result = evaluator.evalauteHandsType(myHands, otherhands);
@@ -137,7 +137,7 @@ public class EvaluatorTest {
     }
 
     @Test
-    private void Flush_비교_같은랭크_다른문양(){
+    public void Flush_비교_같은랭크_다른문양(){
         Hands myHands = getFlush1();
         Hands otherhands = getFlush3();
         int result = evaluator.evalauteHandsType(myHands, otherhands);
@@ -145,7 +145,7 @@ public class EvaluatorTest {
     }
 
     @Test
-    private void Flush_비교_다른랭크_같은문양(){
+    public void Flush_비교_다른랭크_같은문양(){
         Hands myHands = getFlush1();
         Hands otherhands = getFlush2();
         int result = evaluator.evalauteHandsType(myHands, otherhands);

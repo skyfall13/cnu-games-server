@@ -21,8 +21,9 @@ public class EvaluatorTest {
         evaluator = new Evaluator();
     }
 
-    // <!-- High CARD 테스트
 
+    // <!-- High CARD 테스트
+    @Ignore
     @Test
     public void evaluateHighCard1() {
         List<Hands> handsList = new ArrayList<>();
@@ -35,6 +36,7 @@ public class EvaluatorTest {
         assertThat(resultList.get(1).getHandsType(), is(HandsType.STRIGHT));
     }
 
+    @Ignore
     @Test
     public void evaluateHighCard2() {
         List<Hands> handsList = new ArrayList<>();
@@ -62,8 +64,6 @@ public class EvaluatorTest {
 
 
     // High CARD 테스트 -->
-
-
 
     // <!-- Low CARD 테스트
     @Test
@@ -122,9 +122,33 @@ public class EvaluatorTest {
     @Test
     public void 투페어비교() {
         Hands myHands = getTwoPair1();
-        Hands otherHans = getTwoPair2();
-        int result = evaluator.evalauteHandsType(myHands, otherHans);
+        Hands otherHands = getTwoPair2();
+        int result = evaluator.evalauteHandsType(myHands, otherHands);
         assertThat(result, is (-2));
+    }
+
+    @Test
+    public void Flush_비교_다른랭크_다른문양(){
+        Hands myHands = getFlush1();
+        Hands otherhands = getFlush4();
+        int result = evaluator.evalauteHandsType(myHands, otherhands);
+        assertThat(result, is(-1));
+    }
+
+    @Test
+    public void Flush_비교_같은랭크_다른문양(){
+        Hands myHands = getFlush1();
+        Hands otherhands = getFlush3();
+        int result = evaluator.evalauteHandsType(myHands, otherhands);
+        assertThat(result, is(-1));
+    }
+
+    @Test
+    public void Flush_비교_다른랭크_같은문양(){
+        Hands myHands = getFlush1();
+        Hands otherhands = getFlush2();
+        int result = evaluator.evalauteHandsType(myHands, otherhands);
+        assertThat(result, is(-1));
     }
 
     // Low CARD 테스트 -->
@@ -402,6 +426,50 @@ public class EvaluatorTest {
         cardList.add(new Card(10, Suit.HEARTS));
 
         return new Hands(HandsType.NOTHING, cardList);
+    }
+
+    private Hands getFlush1(){
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(1, Suit.CLUBS));
+        cardList.add(new Card(2, Suit.CLUBS));
+        cardList.add(new Card(3, Suit.CLUBS));
+        cardList.add(new Card(7, Suit.CLUBS));
+        cardList.add(new Card(13, Suit.CLUBS));
+
+        return new Hands(HandsType.FLUSH, cardList);
+    }
+
+    private Hands getFlush2(){
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(4, Suit.CLUBS));
+        cardList.add(new Card(9, Suit.CLUBS));
+        cardList.add(new Card(5, Suit.CLUBS));
+        cardList.add(new Card(6, Suit.CLUBS));
+        cardList.add(new Card(12, Suit.CLUBS));
+
+        return new Hands(HandsType.FLUSH, cardList);
+    }
+
+    private Hands getFlush3(){
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(1, Suit.HEARTS));
+        cardList.add(new Card(2, Suit.HEARTS));
+        cardList.add(new Card(3, Suit.HEARTS));
+        cardList.add(new Card(7, Suit.HEARTS));
+        cardList.add(new Card(13, Suit.HEARTS));
+
+        return new Hands(HandsType.FLUSH, cardList);
+    }
+
+    private Hands getFlush4(){
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(7, Suit.SPADES));
+        cardList.add(new Card(1, Suit.SPADES));
+        cardList.add(new Card(3, Suit.SPADES));
+        cardList.add(new Card(8, Suit.SPADES));
+        cardList.add(new Card(11, Suit.SPADES));
+
+        return new Hands(HandsType.FLUSH, cardList);
     }
 
     // 13조 get 내용--->

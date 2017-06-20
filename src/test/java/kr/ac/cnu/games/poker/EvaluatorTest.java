@@ -21,8 +21,9 @@ public class EvaluatorTest {
         evaluator = new Evaluator();
     }
 
-    // <!-- High CARD 테스트
 
+    // <!-- High CARD 테스트
+    @Ignore
     @Test
     public void evaluateHighCard1() {
         List<Hands> handsList = new ArrayList<>();
@@ -35,6 +36,7 @@ public class EvaluatorTest {
         assertThat(resultList.get(1).getHandsType(), is(HandsType.STRIGHT));
     }
 
+    @Ignore
     @Test
     public void evaluateHighCard2() {
         List<Hands> handsList = new ArrayList<>();
@@ -62,8 +64,6 @@ public class EvaluatorTest {
 
 
     // High CARD 테스트 -->
-
-
 
     // <!-- Low CARD 테스트
     @Test
@@ -122,8 +122,8 @@ public class EvaluatorTest {
     @Test
     public void 투페어비교() {
         Hands myHands = getTwoPair1();
-        Hands otherHans = getTwoPair2();
-        int result = evaluator.evalauteHandsType(myHands, otherHans);
+        Hands otherHands = getTwoPair2();
+        int result = evaluator.evalauteHandsType(myHands, otherHands);
         assertThat(result, is (-2));
     }
 
